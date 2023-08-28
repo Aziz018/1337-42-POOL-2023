@@ -6,7 +6,7 @@
 /*   By: aelkheta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:09:48 by aelkheta          #+#    #+#             */
-/*   Updated: 2023/08/23 11:00:13 by aelkheta         ###   ########.fr       */
+/*   Updated: 2023/08/26 09:33:23 by aelkheta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 			return (s1[i] - s2[i]);
 		i++;
 	}
-	return (s1[i] - s2[i]);
+	return (0);
 }
