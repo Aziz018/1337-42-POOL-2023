@@ -6,7 +6,7 @@
 /*   By: aelkheta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:37:37 by aelkheta          #+#    #+#             */
-/*   Updated: 2023/08/18 22:11:13 by aelkheta         ###   ########.fr       */
+/*   Updated: 2023/09/05 15:15:30 by aelkheta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 void	ft_putchar(char c)
 {
-	write (1, &c, 1);
+	write(1, &c, 1);
 }
 
 void	ft_putnbr(int nb)
 {
 	if (nb == -2147483648)
-		write(1, "-2147483648", 11);
-	else if (nb < 0)
 	{
-		write(1, "-", 1);
-		nb = -nb;
+		write(1, "-2147483648", 11);
 	}
 	else if (nb >= 0 && nb <= 9)
 	{
-		ft_putchar(nb + '0');
+		ft_putchar(nb + 48);
+	}
+	else if (nb < 0)
+	{
+		ft_putchar('-');
+		ft_putnbr(nb * (-1));
 	}
 	else
 	{
