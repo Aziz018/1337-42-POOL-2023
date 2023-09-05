@@ -6,54 +6,72 @@
 /*   By: aelkheta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 18:09:18 by aelkheta          #+#    #+#             */
-/*   Updated: 2023/08/28 20:25:57 by aelkheta         ###   ########.fr       */
+/*   Updated: 2023/09/05 15:20:18 by aelkheta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void ft_swap(char **a, char **b)
+void	ft_putstr(char *str)
 {
-    char *swp = *a;
-    *a = *b;
-    *b = swp;
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
 }
 
-void print_params(int ac, char *av)
+int	ft_strcmp(char *s1, char *s2)
 {
-    int j = 0;
-    while (av[j])
-    {
-        write(1, &av[j], 1);
-        j++;
-    }
-    write(1, "\n", 1);
+	int	i;
+
+	i = 0;
+	while (s1[i] || s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (0);
 }
 
-int main(int argc, char **argv)
+void	ft_swap(char **a, char **b)
 {
-    int i, j, k;
+	char	*tmp;
 
-    i = 1;
-    while (i < argc - 1)
-    {
-        j = i + 1;
-        k = 0;
-        while (argv[i][k] && argv[j][k] && argv[i][k] == argv[j][k])
-        {
-            k++;
-        }
-        if (argv[i][k] > argv[j][k])
-        {
-            ft_swap(&argv[i], &argv[j]);
-        }
-        i++;
-    }
-    i = 1;
-    while (i < argc)
-    {
-        print_params(argc, argv[i]);
-        i++;
-    }
-    return 0;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+int	main(int argc, char **argv)
+{
+	int	j;
+	int	i;
+
+	i = 1;
+	while (i < argc - 1)
+	{
+		j = i + 1;
+		while (j < argc)
+		{
+			if (ft_strcmp(argv[i], argv[j]) > 0)
+			{
+				ft_swap(&argv[i], &argv[j]);
+			}
+			j++;
+		}
+		i++;
+	}
+	j = 1;
+	while (j < argc)
+	{
+		ft_putstr(argv[j]);
+		j++;
+	}
+	return (0);
 }
